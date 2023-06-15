@@ -60,12 +60,12 @@ public class Main {
                         while (!monitor.getState()) {
                             monitor.wait();  // Wait until the state of Thread M is true
                         }
+                    }
 
-                        // Output seconds count
-                        for (int i = 1; i <= 10; i++) {
-                            System.out.println("Seconds: " + i);
-                            Thread.sleep(1000);
-                        }
+                    // Output seconds count
+                    for (int i = 1; i <= 10; i++) {
+                        System.out.println("Seconds: " + i);
+                        Thread.sleep(1000);
                     }
                 }
             } catch (InterruptedException e) {
