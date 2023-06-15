@@ -63,9 +63,10 @@ public class Main {
                     }
 
                     // Output seconds count
-                    for (int i = 1; i <= 10; i++) {
-                        System.out.println("Seconds: " + i);
-                        Thread.sleep(1000);
+                    int i = 0;
+                    while (monitor.getState()) {
+                        Thread.sleep(1001);
+                        System.out.println("Seconds: " + ++i);
                     }
                 }
             } catch (InterruptedException e) {
