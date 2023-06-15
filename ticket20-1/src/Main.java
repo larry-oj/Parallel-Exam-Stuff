@@ -14,11 +14,14 @@ public class Main {
                     lock.lock();
                     try {
                         flag = !flag; // Змінюємо стан флагу
-                        condition.signal(); // Сповіщаємо потік B про зміну стану
-                        Thread.sleep(100); // Затримка 100 мс
+                        if (flag) {
+                            condition.signal(); // Сповіщаємо потік B про зміну стану
+                        }
                     } finally {
                         lock.unlock();
                     }
+                    Thread.sleep(1000); // Затримка 100 мс
+                    System.out.println("State change");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -30,9 +33,8 @@ public class Main {
                 while (true) {
                     lock.lock();
                     try {
-                        while (!flag) {
-                            condition.await(); // Очікуємо на стан true
-                        }
+                        condition.await(); // Очікуємо на стан true
+
                         // Виводимо значення масиву на консоль
                         int[] array = {1, 2, 3, 4, 5};
                         for (int i : array) {
